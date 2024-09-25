@@ -24,7 +24,7 @@ class XfmrWeights(NamedTuple):
 
 
 def norm(x, w, eps: float = 1e-6):
-    return w * (x * jax.lax.rsqrt(jax.lax.pow(x, 2).mean(-1, keepdims=True) + eps))
+    return w * (x / jax.lax.rsqrt(jax.lax.pow(x, 2).mean(-1, keepdims=True) + eps))
 
 def attention(input_bld, params):
     """
